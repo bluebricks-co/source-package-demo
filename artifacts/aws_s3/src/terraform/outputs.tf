@@ -1,3 +1,3 @@
 output "bucket_name" {
-  value = module.s3.s3_bucket_id
+  value = aws_s3_bucket.demo.bucket
 }
