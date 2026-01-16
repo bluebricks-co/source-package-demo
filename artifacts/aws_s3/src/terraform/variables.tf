@@ -69,12 +69,9 @@ variable "region" {
 }
 
 variable "versioning" {
-  default = {
-    enabled = true
-  }
-
+  default = {}
   description = "Versioning configuration block"
-  type        = any
+  type        = map(string)
 }
 
 variable "website" {
