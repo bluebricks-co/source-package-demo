@@ -4,7 +4,7 @@ module "s3" {
   attach_policy           = var.attach_policy
   block_public_acls       = var.block_public_acls
   block_public_policy     = var.block_public_policy
-  bucket                  = var.bucket_name
+  bucket                  = var.name
   cors_rule               = var.cors_rule
   create_bucket           = var.create_bucket
   ignore_public_acls      = var.ignore_public_acls
