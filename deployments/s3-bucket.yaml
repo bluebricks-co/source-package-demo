@@ -1,0 +1,13 @@
+apiVersion: bricks/v1
+kind: Deployment
+metadata:
+  name: source-package-demo-s3
+spec:
+  blueprint: source_package_demo_aws_s3
+  version: 1.1.0
+  force: false
+  planOnly: false
+  environment: source-package-demo
+  props:
+    name: bluebricks-source-package-demo-s3
+    region: eu-west-1

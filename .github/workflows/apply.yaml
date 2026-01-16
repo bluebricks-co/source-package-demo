@@ -1,0 +1,18 @@
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  bricks-plan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create Bricks deployment plan
+        uses: bluebricks-co/bricks-action@v1
+        with:
+          command: install
+          file: deployments/s3-bucket.yaml
+          api-key: ${{ secrets.BRICKS_API_KEY }}
