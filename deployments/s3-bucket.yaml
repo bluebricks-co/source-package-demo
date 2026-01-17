@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: source-package-demo-s3-new
 spec:
-  blueprint: source_package_demo_aws_s3_new
+  blueprint: source_package_demo_aws_s3_final_bp
   version: 1.0.0
   force: false
   planOnly: false
