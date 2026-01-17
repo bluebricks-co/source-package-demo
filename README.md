@@ -4,7 +4,7 @@ A demonstration repository showcasing BlueBricks infrastructure deployment with 
 
 ## Overview
 
-This repository contains a BlueBricks source package that deploys an AWS S3 bucket with configurable settings including versioning, CORS, lifecycle rules, and security policies.
+This repository contains a BlueBricks source package that deploys an AWS S3 bucket in a specific region.
 
 ## Repository Structure
 
@@ -54,26 +54,6 @@ spec:
     name: bluebricks-source-package-demo-s3
     region: eu-west-1
 ```
-
-## Infrastructure Components
-
-### AWS S3 Bucket
-- **Provider**: AWS (>= 5.70.0)
-- **Region**: eu-west-1
-- **Features**:
-  - Configurable versioning
-  - CORS rules support
-  - Lifecycle management
-  - Access logging
-  - Public access blocking
-  - Security policies (encryption, transport)
-
-### Terraform Module
-Located in `artifacts/aws_s3/src/terraform/`, the module includes:
-- S3 bucket with comprehensive configuration options
-- IAM policies for various AWS services (ELB, CloudTrail, WAF)
-- Public access controls
-- Encryption and security settings
 
 ## Prerequisites
 
