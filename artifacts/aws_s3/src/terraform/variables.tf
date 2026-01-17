@@ -9,7 +9,9 @@ variable "region" {
 }
 
 variable "tags" {
-  default =  {}
+  default =  {
+    environment = "demo"
+  }
   description = "A mapping of tags to assign to the bucket."
   type = map(string)
 }
