@@ -1,10 +1,10 @@
 apiVersion: bricks/v1
 kind: Deployment
 metadata:
-  name: source-package-demo-s3
+  name: source-package-demo-s3-new-final
 spec:
-  blueprint: source_package_demo_aws_s3
-  version: 1.1.0
+  blueprint: source_package_demo_aws_s3_final_bp
+  version: 1.0.0
   force: false
   planOnly: false
   environment: source-package-demo
