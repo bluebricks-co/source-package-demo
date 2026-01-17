@@ -11,6 +11,7 @@ variable "region" {
 variable "tags" {
   default =  {
     Environment = "dev"
+    OwnedBy = "Bluebricks"
   }
   description = "A mapping of tags to assign to the bucket."
   type = map(string)
