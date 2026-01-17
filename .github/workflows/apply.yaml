@@ -17,4 +17,6 @@ jobs:
         with:
           command: install
           file: deployments/s3-bucket.yaml
+          # Apply should be from demo branch...
+          plan-only: 'true'
           api-key: ${{ secrets.BRICKS_API_KEY }}
