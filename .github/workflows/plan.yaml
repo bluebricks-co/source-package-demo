@@ -1,3 +1,5 @@
+name: Plan
+
 on:
   pull_request:
 
