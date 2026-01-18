@@ -45,13 +45,13 @@ The deployment is configured in `deployments/s3-bucket.yaml`:
 apiVersion: bricks/v1
 kind: Deployment
 metadata:
-  name: source-package-demo-s3
+  name: s3-live-bucket
 spec:
-  blueprint: source_package_demo_aws_s3
-  version: 1.1.0
-  environment: source-package-demo
+  blueprint: s3_simple_bucket
+  version: 1.0.0
+  environment: EUDC020
   props:
-    name: bluebricks-source-package-demo-s3
+    name: s3-live-bucket
     region: eu-west-1
 ```
 
