@@ -49,7 +49,7 @@ metadata:
 spec:
   blueprint: s3_simple_bucket
   version: 1.0.0
-  environment: EUDC020
+  environment: eudc020
   props:
     name: s3-live-bucket
     region: eu-west-1
