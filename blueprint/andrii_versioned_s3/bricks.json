@@ -1,0 +1,86 @@
+{
+  "name": "andrii_versioned_s3",
+  "version": "1.0.0",
+  "description": "",
+  "packages": [
+    {
+      "id": "terraform",
+      "name": "terraform",
+      "version": "1.0.0+20260217T180349",
+      "props": {
+        "region": {
+          "value": "Props.region"
+        },
+        "tags": {
+          "value": "Props.tags"
+        },
+        "logging": {
+          "value": "Props.logging"
+        },
+        "cors_rule": {
+          "value": "Props.cors_rule"
+        },
+        "versioning": {
+          "value": "Props.versioning"
+        },
+        "bucket_names": {
+          "value": "Props.bucket_names"
+        },
+        "create_bucket": {
+          "value": "Props.create_bucket"
+        },
+        "lifecycle_rule": {
+          "value": "Props.lifecycle_rule"
+        }
+      }
+    }
+  ],
+  "props": {
+    "region": {
+      "default": "eu-north-1",
+      "type": "string"
+    },
+    "tags": {
+      "type": "map(string)",
+      "default": {},
+      "description": "A mapping of tags to assign to the bucket"
+    },
+    "logging": {
+      "type": "map(string)",
+      "default": {},
+      "description": "Map containing access bucket logging configuration."
+    },
+    "cors_rule": {
+      "type": "any",
+      "default": [],
+      "description": "Specifies the CORS configuration for the bucket"
+    },
+    "versioning": {
+      "type": "any",
+      "default": {
+        "enabled": true
+      },
+      "description": "Versioning configuration block"
+    },
+    "bucket_names": {
+      "type": "list(string)",
+      "description": "The names of the buckets to create"
+    },
+    "create_bucket": {
+      "type": "bool",
+      "default": true,
+      "description": "Controls if S3 bucket should be created"
+    },
+    "lifecycle_rule": {
+      "type": "any",
+      "default": [],
+      "description": "Specifies the lifecycle configuration for objects in the bucket"
+    }
+  },
+  "outs": {
+    "bucket_names": {
+      "value": "Data.terraform.bucket_names",
+      "type": "array"
+    }
+  }
+}

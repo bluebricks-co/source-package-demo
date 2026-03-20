@@ -1,0 +1,9 @@
+name: s3_simple_bucket
+version: 1.0.0
+packages:
+  - name: aws_s3_package
+    native:
+      type: opentofu
+    id: aws_s3_package
+    version: 1.0.0
+    source: git::https://github.com/bluebricks-co/infra-live.git//artifacts/aws_s3/src/terraform?ref=demo

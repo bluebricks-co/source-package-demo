@@ -1,0 +1,355 @@
+{
+  "name": "meitar_instance_blueprint",
+  "version": "1.0.0",
+  "props": {
+    "capacity_reservation_preference": {
+      "type": "string",
+      "default": "open"
+    },
+    "cpu_core_count": {
+      "type": "number",
+      "default": 1
+    },
+    "cpu_threads_per_core": {
+      "type": "number",
+      "default": 1
+    },
+    "enclave_enabled": {
+      "type": "bool",
+      "default": false
+    },
+    "instance_ami": {
+      "type": "string",
+      "default": "ami-011bf62e6a9f5a429"
+    },
+    "instance_availability_zone": {
+      "type": "string",
+      "default": "eu-north-1c"
+    },
+    "instance_disable_api_stop": {
+      "type": "bool",
+      "default": false
+    },
+    "instance_disable_api_termination": {
+      "type": "bool",
+      "default": false
+    },
+    "instance_ebs_optimized": {
+      "type": "bool",
+      "default": false
+    },
+    "instance_iam_profile": {
+      "type": "string",
+      "default": "eks-80ce02d1-1194-3ed1-4a02-ee2ddd458d41"
+    },
+    "instance_initiated_shutdown_behavior": {
+      "type": "string",
+      "default": "stop"
+    },
+    "instance_monitoring": {
+      "type": "bool",
+      "default": true
+    },
+    "instance_tags": {
+      "type": "map(string)",
+      "default": {
+        "Name": "system",
+        "eks:cluster-name": "bb-eks-gitops",
+        "eks:nodegroup-name": "default",
+        "k8s.io/cluster-autoscaler/bb-eks-gitops": "owned",
+        "k8s.io/cluster-autoscaler/enabled": "true",
+        "kubernetes.io/cluster/bb-eks-gitops": "owned"
+      }
+    },
+    "instance_type": {
+      "type": "string",
+      "default": "m7a.medium"
+    },
+    "instance_user_data": {
+      "type": "string",
+      "default": "MIME-Version: 1.0\nContent-Type: multipart/mixed; boundary=\"//\"\n\n--//\nContent-Type: application/node.eks.aws\n\n---\napiVersion: node.eks.aws/v1alpha1\nkind: NodeConfig\nspec:\n  cluster:\n    apiServerEndpoint: https://C080494B575C8B184F9EC25E14EF9126.gr7.eu-north-1.eks.amazonaws.com\n    certificateAuthority: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJTU5pN1ZlUTQ2NUF3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TkRBMU1ERXdOelEyTXpSYUZ3MHpOREEwTWprd056VXhNelJhTUJVeApFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUURMejE0WXpMcTBHYno2OGVoM1l5bDdIamNYdWpKRXltSGtwcTFrUTNIL1M2SE8vZWFqa2NUL09UY24Kc28wQ09rTERSK2oyRy9lU2wzekl4aTVIVGgrU2t1S0xDQ1FwT2FwMXlraUV1TG9vNFlDbmk2MkxiM1lBbFk1RwpWRHJuVDkyZTF1Wjh0dkNscWxXbHdRN3BlQytkRkdkSTdEUFV1UVZSaGZWVXdIM1hDNVR1TWhVR0ZCdGVSUTBKClBVZ2lmSzUzd1luakxiMGMwaFdQSWR0Z3VpWm05dUYveldzdGRvNFVEaWw2czN1RG5WYmFIZGI0Y2hOOTUxNjkKWVJDZUpPS01nSVEzS0t5SXc5L0drNVhyR0htcllBLzNYeWxlbE0yb1lUYjRLWFAyaVBRWkZ0K2xHY3ZVRVZOeQovYVV1TktjNVAvb1J4MmM0NWxDSW5jTEZmeENyQWdNQkFBR2pXVEJYTUE0R0ExVWREd0VCL3dRRUF3SUNwREFQCkJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJScVU2dkNXOStNL1dRbHNaWlkxNnBXRFJJOHdUQVYKQmdOVkhSRUVEakFNZ2dwcmRXSmxjbTVsZEdWek1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQkEwa0lwREZoagpnVUdGNzdFczkwWVVoamc1VElrRHVZd0ZwR2VabXRyME1wRk9pREZwVzMwb0ZrVXVSekdQTGJld0pzNVd6T2s2CitwcHZkS1JqbmIxcXFMU2VmdDVxVGowbmliakJSRno4SDVWTVdFd2JwVkFmRlkzcnBqRG9jYkJnTmQ4TWt3VVMKOTVLRlh4YnZGcmRjY2hMMFArblRubnlFUzBMdlo3NTFVTlpoQ0EvUGZXUE50OHZGTHZ3VXBaT3Y4VzBGeFArYQpDbWhObzFFYzlxRjh0Wkg5ZE1oUVk5Tk5LSkFQOWxPdHR4ZDRONGEwdzY2VWQ2TVRxL2w2bnBmU1ZkbjN5Z1V6CjRJSUxMQU10dWJETkdOaXA5ajlXeXFxeVd3ZC9OOHVraElwaDdYRFRlb3B3RlJMaEd5SFdMazZuNlVOTEhzQXMKQjllVzdQa2I4RlM0Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K\n    cidr: 172.20.0.0/16\n    name: bb-eks-gitops\n  kubelet:\n    config:\n      maxPods: 98\n      clusterDNS:\n      - 172.20.0.10\n    flags:\n    - \"--node-labels=eks.amazonaws.com/nodegroup-image=ami-011bf62e6a9f5a429,eks.amazonaws.com/sourceLaunchTemplateVersion=1,eks.amazonaws.com/capacityType=ON_DEMAND,eks.amazonaws.com/nodegroup=default,eks.amazonaws.com/sourceLaunchTemplateId=lt-02cdfe144fef38cdc\"\n\n--//--"
+    },
+    "launch_template_name": {
+      "type": "string",
+      "default": "eks-80ce02d1-1194-3ed1-4a02-ee2ddd458d41"
+    },
+    "launch_template_version": {
+      "type": "string",
+      "default": "2"
+    },
+    "maintenance_auto_recovery": {
+      "type": "string",
+      "default": "default"
+    },
+    "metadata_http_endpoint": {
+      "type": "string",
+      "default": "enabled"
+    },
+    "metadata_http_protocol_ipv6": {
+      "type": "string",
+      "default": "disabled"
+    },
+    "metadata_http_put_response_hop_limit": {
+      "type": "number",
+      "default": 2
+    },
+    "metadata_http_tokens": {
+      "type": "string",
+      "default": "required"
+    },
+    "metadata_instance_metadata_tags": {
+      "type": "string",
+      "default": "disabled"
+    },
+    "private_dns_name_hostname_type": {
+      "type": "string",
+      "default": "ip-name"
+    },
+    "region": {
+      "type": "string",
+      "default": "eu-north-1"
+    },
+    "root_block_device_delete_on_termination": {
+      "type": "bool",
+      "default": true
+    },
+    "root_block_device_encrypted": {
+      "type": "bool",
+      "default": false
+    },
+    "root_block_device_iops": {
+      "type": "number",
+      "default": 3000
+    },
+    "root_block_device_tags": {
+      "type": "map(string)",
+      "default": {
+        "Name": "system",
+        "eks:cluster-name": "bb-eks-gitops",
+        "eks:nodegroup-name": "default"
+      }
+    },
+    "root_block_device_throughput": {
+      "type": "number",
+      "default": 125
+    },
+    "root_block_device_volume_size": {
+      "type": "number",
+      "default": 20
+    },
+    "root_block_device_volume_type": {
+      "type": "string",
+      "default": "gp3"
+    }
+  },
+  "outs": {
+    "deployment_status": {
+      "value": "\"Deployed Successfully to andrii-test-1-1\""
+    },
+    "ami": {
+      "value": "Data.meitar_instance.ami",
+      "type": "string",
+      "description": "The AMI ID used to launch the EC2 instance."
+    },
+    "arn": {
+      "value": "Data.meitar_instance.arn",
+      "type": "string",
+      "description": "The ARN of the EC2 instance."
+    },
+    "availability_zone": {
+      "value": "Data.meitar_instance.availability_zone",
+      "type": "string",
+      "description": "The availability zone in which the EC2 instance is running."
+    },
+    "host_id": {
+      "value": "Data.meitar_instance.host_id",
+      "type": "string",
+      "description": "The ID of the dedicated host the instance is running on, if applicable."
+    },
+    "iam_instance_profile": {
+      "value": "Data.meitar_instance.iam_instance_profile",
+      "type": "string",
+      "description": "The IAM instance profile ARN or name attached to the instance."
+    },
+    "id": {
+      "value": "Data.meitar_instance.id",
+      "type": "string",
+      "description": "The ID of the EC2 instance."
+    },
+    "instance_state": {
+      "value": "Data.meitar_instance.instance_state",
+      "type": "string",
+      "description": "The state of the EC2 instance. For example, 'pending', 'running', 'shutting-down', 'terminated', 'stopping', 'stopped'."
+    },
+    "instance_type": {
+      "value": "Data.meitar_instance.instance_type",
+      "type": "string",
+      "description": "The instance type of the EC2 instance."
+    },
+    "ipv6_addresses": {
+      "value": "Data.meitar_instance.ipv6_addresses",
+      "type": "string",
+      "description": "A list of IPv6 addresses assigned to the instance's primary network interface."
+    },
+    "key_name": {
+      "value": "Data.meitar_instance.key_name",
+      "type": "string",
+      "description": "The name of the key pair used to launch the instance."
+    },
+    "placement_group": {
+      "value": "Data.meitar_instance.placement_group",
+      "type": "string",
+      "description": "The name of the placement group the instance is in."
+    },
+    "primary_network_interface_id": {
+      "value": "Data.meitar_instance.primary_network_interface_id",
+      "type": "string",
+      "description": "The ID of the primary network interface attached to the instance."
+    },
+    "private_dns": {
+      "value": "Data.meitar_instance.private_dns",
+      "type": "string",
+      "description": "The private DNS name assigned to the EC2 instance."
+    },
+    "private_ip": {
+      "value": "Data.meitar_instance.private_ip",
+      "type": "string",
+      "description": "The private IP address assigned to the EC2 instance."
+    },
+    "public_dns": {
+      "value": "Data.meitar_instance.public_dns",
+      "type": "string",
+      "description": "The public DNS name assigned to the EC2 instance, if applicable."
+    },
+    "public_ip": {
+      "value": "Data.meitar_instance.public_ip",
+      "type": "string",
+      "description": "The public IP address assigned to the EC2 instance, if applicable."
+    },
+    "subnet_id": {
+      "value": "Data.meitar_instance.subnet_id",
+      "type": "string",
+      "description": "The ID of the subnet in which the EC2 instance is running."
+    },
+    "tags_all": {
+      "value": "Data.meitar_instance.tags_all",
+      "type": "string",
+      "description": "A map of all tags assigned to the instance, including default tags."
+    },
+    "tenancy": {
+      "value": "Data.meitar_instance.tenancy",
+      "type": "string",
+      "description": "The tenancy of the instance (e.g., 'default', 'dedicated')."
+    },
+    "vpc_security_group_ids": {
+      "value": "Data.meitar_instance.vpc_security_group_ids",
+      "type": "string",
+      "description": "A list of security group IDs associated with the EC2 instance."
+    }
+  },
+  "packages": [
+    {
+      "name": "meitar_instance",
+      "id": "meitar_instance",
+      "version": "1.0.0",
+      "props": {
+        "capacity_reservation_preference": {
+          "value": "Props.capacity_reservation_preference"
+        },
+        "cpu_core_count": {
+          "value": "Props.cpu_core_count"
+        },
+        "cpu_threads_per_core": {
+          "value": "Props.cpu_threads_per_core"
+        },
+        "enclave_enabled": {
+          "value": "Props.enclave_enabled"
+        },
+        "instance_ami": {
+          "value": "Props.instance_ami"
+        },
+        "instance_availability_zone": {
+          "value": "Props.instance_availability_zone"
+        },
+        "instance_disable_api_stop": {
+          "value": "Props.instance_disable_api_stop"
+        },
+        "instance_disable_api_termination": {
+          "value": "Props.instance_disable_api_termination"
+        },
+        "instance_ebs_optimized": {
+          "value": "Props.instance_ebs_optimized"
+        },
+        "instance_iam_profile": {
+          "value": "Props.instance_iam_profile"
+        },
+        "instance_initiated_shutdown_behavior": {
+          "value": "Props.instance_initiated_shutdown_behavior"
+        },
+        "instance_monitoring": {
+          "value": "Props.instance_monitoring"
+        },
+        "instance_tags": {
+          "value": "Props.instance_tags"
+        },
+        "instance_type": {
+          "value": "Props.instance_type"
+        },
+        "instance_user_data": {
+          "value": "Props.instance_user_data"
+        },
+        "launch_template_name": {
+          "value": "Props.launch_template_name"
+        },
+        "launch_template_version": {
+          "value": "Props.launch_template_version"
+        },
+        "maintenance_auto_recovery": {
+          "value": "Props.maintenance_auto_recovery"
+        },
+        "metadata_http_endpoint": {
+          "value": "Props.metadata_http_endpoint"
+        },
+        "metadata_http_protocol_ipv6": {
+          "value": "Props.metadata_http_protocol_ipv6"
+        },
+        "metadata_http_put_response_hop_limit": {
+          "value": "Props.metadata_http_put_response_hop_limit"
+        },
+        "metadata_http_tokens": {
+          "value": "Props.metadata_http_tokens"
+        },
+        "metadata_instance_metadata_tags": {
+          "value": "Props.metadata_instance_metadata_tags"
+        },
+        "private_dns_name_hostname_type": {
+          "value": "Props.private_dns_name_hostname_type"
+        },
+        "region": {
+          "value": "Props.region"
+        },
+        "root_block_device_delete_on_termination": {
+          "value": "Props.root_block_device_delete_on_termination"
+        },
+        "root_block_device_encrypted": {
+          "value": "Props.root_block_device_encrypted"
+        },
+        "root_block_device_iops": {
+          "value": "Props.root_block_device_iops"
+        },
+        "root_block_device_tags": {
+          "value": "Props.root_block_device_tags"
+        },
+        "root_block_device_throughput": {
+          "value": "Props.root_block_device_throughput"
+        },
+        "root_block_device_volume_size": {
+          "value": "Props.root_block_device_volume_size"
+        },
+        "root_block_device_volume_type": {
+          "value": "Props.root_block_device_volume_type"
+        }
+      }
+    }
+  ]
+}
