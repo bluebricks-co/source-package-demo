@@ -72,3 +72,4 @@ spec:
 Key configurable variables include:
 - `name`: S3 bucket name
 - `region`: AWS region
+------
