@@ -26,27 +26,46 @@ variable "vpc_cidr" {
   }
 }
 
+variable "public_subnet_cidrs" {
+  type        = list(string)
+  description = "CIDR blocks for public subnets"
+  default     = ["10.0.1.0/24", "10.0.2.0/24"]
+}
+
+variable "private_subnet_cidrs" {
+  type        = list(string)
+  description = "CIDR blocks for private subnets"
+  default     = ["10.0.10.0/24", "10.0.11.0/24"]
+}
+
+variable "enable_nat_gateway" {
+  type        = bool
+  description = "Whether to create a NAT Gateway for private subnet internet access"
+  default     = true
+}
+
+variable "single_nat_gateway" {
+  type        = bool
+  description = "Use a single NAT Gateway for all AZs (cost saving)"
+  default     = true
+}
+
+variable "endpoint_public_access" {
+  type        = bool
+  description = "Enable public access to the EKS API server endpoint"
+  default     = true
+}
+
+variable "node_pools" {
+  type        = list(string)
+  description = "List of Auto Mode node pools to enable"
+  default     = ["general-purpose"]
+}
+
 variable "argocd_addon_version" {
   type        = string
   description = "Version of the ArgoCD EKS add-on (null for latest)"
   default     = null
-}
-
-variable "node_instance_type" {
-  type        = string
-  description = "EC2 instance type for EKS worker nodes"
-  default     = "t3.medium"
-}
-
-variable "node_desired_size" {
-  type        = number
-  description = "Desired number of worker nodes"
-  default     = 2
-
-  validation {
-    condition     = var.node_desired_size > 0
-    error_message = "Node desired size must be greater than 0."
-  }
 }
 
 variable "region" {
