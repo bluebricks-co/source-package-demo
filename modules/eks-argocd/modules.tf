@@ -34,6 +34,9 @@ module "eks" {
 
   endpoint_public_access = true
 
+  create_kms_key    = false
+  encryption_config = {}
+
   eks_managed_node_groups = {
     default = {
       instance_types = [var.node_instance_type]
