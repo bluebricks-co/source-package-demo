@@ -62,7 +62,7 @@ module "pod_identity_role" {
 | role_name | Name of the IAM role for EKS Pod Identity | `string` | `"kubecon-demo-pod-role"` | no |
 | policy_arns | List of IAM policy ARNs to attach to the role | `list(string)` | `["arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"]` | no |
 | custom_policy_json | Custom IAM policy JSON document to attach to the role | `string` | `null` | no |
-| region | AWS region where resources will be created | `string` | `"eu-west-1"` | no |
+| region | AWS region where resources will be created | `string` | `"eu-central-1"` | no |
 | tags | Tags to apply to all resources | `map(string)` | `{}` | no |
 
 ## Outputs

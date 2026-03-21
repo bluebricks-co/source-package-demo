@@ -10,7 +10,7 @@ module "tf_state_backend" {
 
   bucket_name          = "my-terraform-state"
   dynamodb_table_name  = "my-terraform-locks"
-  region               = "eu-west-1"
+  region               = "eu-central-1"
 
   tags = {
     Environment = "production"
@@ -26,7 +26,7 @@ terraform {
   backend "s3" {
     bucket         = "my-terraform-state"
     key            = "path/to/terraform.tfstate"
-    region         = "eu-west-1"
+    region         = "eu-central-1"
     dynamodb_table = "my-terraform-locks"
     encrypt        = true
   }
@@ -53,7 +53,7 @@ This module uses the following community modules:
 | bucket_name | Name of the S3 bucket for Terraform state storage | string | "kubecon-demo-tf-state" | no |
 | dynamodb_table_name | Name of the DynamoDB table for Terraform state locking | string | "kubecon-demo-tf-locks" | no |
 | force_destroy | Allow destruction of S3 bucket even if it contains objects | bool | false | no |
-| region | AWS region where resources will be created | string | "eu-west-1" | no |
+| region | AWS region where resources will be created | string | "eu-central-1" | no |
 | tags | Additional tags to apply to all resources | map(string) | {} | no |
 
 ## Outputs

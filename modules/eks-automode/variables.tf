@@ -31,7 +31,7 @@ variable "endpoint_public_access" {
 variable "region" {
   description = "AWS region"
   type        = string
-  default     = "eu-west-1"
+  default     = "eu-central-1"
 }
 
 variable "tags" {

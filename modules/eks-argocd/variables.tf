@@ -52,7 +52,7 @@ variable "node_desired_size" {
 variable "region" {
   type        = string
   description = "AWS region for resources"
-  default     = "eu-west-1"
+  default     = "eu-central-1"
 }
 
 variable "tags" {

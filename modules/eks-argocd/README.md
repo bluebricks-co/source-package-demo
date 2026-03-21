@@ -26,7 +26,7 @@ module "eks_argocd" {
   argocd_addon_version  = null  # Use latest version
   node_instance_type    = "t3.medium"
   node_desired_size     = 2
-  region                = "eu-west-1"
+  region                = "eu-central-1"
 
   tags = {
     Environment = "dev"
@@ -45,7 +45,7 @@ module "eks_argocd" {
 | argocd_addon_version | Version of the ArgoCD EKS add-on (null for latest) | string | null |
 | node_instance_type | EC2 instance type for EKS worker nodes | string | "t3.medium" |
 | node_desired_size | Desired number of worker nodes | number | 2 |
-| region | AWS region for resources | string | "eu-west-1" |
+| region | AWS region for resources | string | "eu-central-1" |
 | tags | Additional tags to apply to all resources | map(string) | {} |
 
 ## Outputs

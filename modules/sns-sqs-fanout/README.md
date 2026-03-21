@@ -26,7 +26,7 @@ module "sns_sqs_fanout" {
   message_retention_seconds  = 345600
   visibility_timeout_seconds = 30
   max_receive_count          = 3
-  region                     = "eu-west-1"
+  region                     = "eu-central-1"
   tags = {
     Environment = "demo"
     Project     = "kubecon"
@@ -43,7 +43,7 @@ module "sns_sqs_fanout" {
 | message_retention_seconds | Time in seconds that messages are retained in the queue | number | 345600 |
 | visibility_timeout_seconds | Visibility timeout for the queue in seconds | number | 30 |
 | max_receive_count | Maximum number of times a message can be received before being sent to DLQ | number | 3 |
-| region | AWS region | string | "eu-west-1" |
+| region | AWS region | string | "eu-central-1" |
 | tags | Tags to apply to all resources | map(string) | {} |
 
 ## Outputs

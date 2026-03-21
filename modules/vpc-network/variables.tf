@@ -7,7 +7,7 @@ variable "name" {
 variable "region" {
   description = "AWS region to deploy resources"
   type        = string
-  default     = "eu-west-1"
+  default     = "eu-central-1"
 }
 
 variable "tags" {
@@ -42,7 +42,7 @@ variable "private_subnet_cidrs" {
 variable "availability_zones" {
   description = "List of availability zones for subnet placement"
   type        = list(string)
-  default     = ["eu-west-1a", "eu-west-1b"]
+  default     = ["eu-central-1a", "eu-central-1b"]
 }
 
 variable "enable_nat_gateway" {

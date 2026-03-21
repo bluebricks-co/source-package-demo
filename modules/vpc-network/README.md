@@ -24,9 +24,9 @@ module "vpc_network" {
   vpc_cidr              = "10.0.0.0/16"
   public_subnet_cidrs   = ["10.0.1.0/24", "10.0.2.0/24"]
   private_subnet_cidrs  = ["10.0.10.0/24", "10.0.11.0/24"]
-  availability_zones    = ["eu-west-1a", "eu-west-1b"]
+  availability_zones    = ["eu-central-1a", "eu-central-1b"]
   enable_nat_gateway    = true
-  region                = "eu-west-1"
+  region                = "eu-central-1"
 
   tags = {
     Environment = "demo"
@@ -40,12 +40,12 @@ module "vpc_network" {
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|----------|
 | name | Name prefix for all resources in the VPC | string | "kubecon-demo" | no |
-| region | AWS region to deploy resources | string | "eu-west-1" | no |
+| region | AWS region to deploy resources | string | "eu-central-1" | no |
 | tags | Common tags to apply to all resources | map(string) | {} | no |
 | vpc_cidr | CIDR block for the VPC | string | "10.0.0.0/16" | no |
 | public_subnet_cidrs | List of CIDR blocks for public subnets | list(string) | ["10.0.1.0/24", "10.0.2.0/24"] | no |
 | private_subnet_cidrs | List of CIDR blocks for private subnets | list(string) | ["10.0.10.0/24", "10.0.11.0/24"] | no |
-| availability_zones | List of availability zones for subnet placement | list(string) | ["eu-west-1a", "eu-west-1b"] | no |
+| availability_zones | List of availability zones for subnet placement | list(string) | ["eu-central-1a", "eu-central-1b"] | no |
 | enable_nat_gateway | Whether to create a NAT Gateway for private subnet internet access | bool | true | no |
 
 ## Outputs

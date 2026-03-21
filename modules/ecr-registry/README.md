@@ -23,7 +23,7 @@ module "ecr_registry" {
   untagged_expiry_days  = 14
   force_delete          = false
 
-  region = "eu-west-1"
+  region = "eu-central-1"
   tags = {
     Environment = "production"
     ManagedBy   = "terraform"
@@ -41,7 +41,7 @@ module "ecr_registry" {
 | max_image_count | Maximum number of tagged images to keep | number | 30 | no |
 | untagged_expiry_days | Number of days before untagged images expire | number | 14 | no |
 | force_delete | Allow deletion of repository even if it contains images | bool | false | no |
-| region | AWS region where resources will be created | string | "eu-west-1" | no |
+| region | AWS region where resources will be created | string | "eu-central-1" | no |
 | tags | Tags to apply to all resources | map(string) | {} | no |
 
 ## Outputs

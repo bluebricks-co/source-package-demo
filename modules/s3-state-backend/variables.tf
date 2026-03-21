@@ -19,7 +19,7 @@ variable "force_destroy" {
 variable "region" {
   type        = string
   description = "AWS region where resources will be created"
-  default     = "eu-west-1"
+  default     = "eu-central-1"
 }
 
 variable "tags" {

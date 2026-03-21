@@ -21,7 +21,7 @@ module "eks_automode" {
   cluster_name            = "my-cluster"
   cluster_version         = "1.31"
   vpc_cidr                = "10.0.0.0/16"
-  region                  = "eu-west-1"
+  region                  = "eu-central-1"
   endpoint_private_access = true
   endpoint_public_access  = true
 
@@ -41,7 +41,7 @@ module "eks_automode" {
 | vpc_cidr | CIDR block for the VPC | `string` | `"10.0.0.0/16"` | no |
 | endpoint_private_access | Enable private API server endpoint | `bool` | `true` | no |
 | endpoint_public_access | Enable public API server endpoint | `bool` | `true` | no |
-| region | AWS region | `string` | `"eu-west-1"` | no |
+| region | AWS region | `string` | `"eu-central-1"` | no |
 | tags | Tags to apply to all resources | `map(string)` | `{}` | no |
 
 ## Outputs
