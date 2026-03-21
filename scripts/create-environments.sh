@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Create Bluebricks environments for all 7 KubeCon demo modules.
+# Create Bluebricks environments for KubeCon demo modules.
 #
 # Prerequisites:
 #   bricks login   # populates ~/.bricks/credentials.yaml with JWT
@@ -11,7 +11,7 @@ set -euo pipefail
 
 # --- Config ---
 API_URL="https://api.bricks-dev.com"
-REPO_URL="git@github.com:bluebricks-co/infra-live.git"
+REPO_URL="https://github.com/bluebricks-co/infra-live.git"
 BRANCH="main"
 COLLECTION="workload-develop"
 IAC_TYPE="opentofu"
@@ -31,13 +31,12 @@ fi
 
 # --- Module definitions: slug|name|description|subfolder|package_name ---
 MODULES=(
-  "dam-network|Dam Network|VPC with public/private subnets, IGW, NAT Gateway|modules/vpc-network|vpc-network"
-  "dam-tf-state|Dam TF State|S3 bucket and DynamoDB table for Terraform state locking|modules/s3-state-backend|s3-state-backend"
-  "tulip-cluster|Tulip Cluster|EKS Auto Mode cluster with self-contained VPC and IAM|modules/eks-automode|eks-automode"
-  "tulip-argocd|Tulip ArgoCD|EKS cluster with ArgoCD deployed as EKS add-on|modules/eks-argocd|eks-argocd"
-  "tulip-app|Tulip App|ECR repository with lifecycle policies and image scanning|modules/ecr-registry|ecr-registry"
-  "windmill-events|Windmill Events|SNS topic with SQS queue and DLQ for event-driven patterns|modules/sns-sqs-fanout|sns-sqs-fanout"
-  "windmill-pod-role|Windmill Pod Role|IAM role configured for EKS Pod Identity trust|modules/iam-pod-identity|iam-pod-identity"
+  "dam-network|Dam Network|VPC with public/private subnets, IGW, NAT Gateway|modules/vpc-network|vpc_network"
+  "dam-tf-state|Dam TF State|S3 bucket and DynamoDB table for Terraform state locking|modules/s3-state-backend|s3_state_backend"
+  "tulip-cluster-gitops|Tulip Cluster GitOps|EKS cluster with ArgoCD deployed as EKS add-on|modules/eks-argocd|eks_argocd"
+  "tulip-app|Tulip App|ECR repository with lifecycle policies and image scanning|modules/ecr-registry|ecr_registry"
+  "windmill-events|Windmill Events|SNS topic with SQS queue and DLQ for event-driven patterns|modules/sns-sqs-fanout|sns_sqs_fanout"
+  "windmill-pod-role|Windmill Pod Role|IAM role configured for EKS Pod Identity trust|modules/iam-pod-identity|iam_pod_identity"
 )
 
 echo "Creating ${#MODULES[@]} Bluebricks environments..."
