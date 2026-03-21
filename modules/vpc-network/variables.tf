@@ -50,3 +50,57 @@ variable "enable_nat_gateway" {
   type        = bool
   default     = true
 }
+
+variable "single_nat_gateway" {
+  description = "Whether to provision a single shared NAT Gateway across all private networks"
+  type        = bool
+  default     = true
+}
+
+variable "map_public_ip_on_launch" {
+  description = "Whether to auto-assign public IP addresses to instances launched in public subnets"
+  type        = bool
+  default     = true
+}
+
+variable "enable_flow_log" {
+  description = "Whether to enable VPC Flow Logs"
+  type        = bool
+  default     = false
+}
+
+variable "flow_log_destination_type" {
+  description = "Type of flow log destination. Can be s3, kinesis-data-firehose or cloud-watch-logs"
+  type        = string
+  default     = "cloud-watch-logs"
+}
+
+variable "create_flow_log_cloudwatch_log_group" {
+  description = "Whether to create CloudWatch log group for VPC Flow Logs"
+  type        = bool
+  default     = false
+}
+
+variable "create_flow_log_cloudwatch_iam_role" {
+  description = "Whether to create IAM role for VPC Flow Logs"
+  type        = bool
+  default     = false
+}
+
+variable "flow_log_cloudwatch_log_group_retention_in_days" {
+  description = "Number of days to retain VPC flow logs in CloudWatch"
+  type        = number
+  default     = 7
+}
+
+variable "flow_log_traffic_type" {
+  description = "The type of traffic to capture in VPC Flow Logs. Valid values: ACCEPT, REJECT, ALL"
+  type        = string
+  default     = "ALL"
+}
+
+variable "flow_log_max_aggregation_interval" {
+  description = "Maximum interval of time during which a flow of packets is captured and aggregated. Valid values: 60 or 600 seconds"
+  type        = number
+  default     = 600
+}

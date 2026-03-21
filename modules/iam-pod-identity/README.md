@@ -59,9 +59,16 @@ module "pod_identity_role" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| role_name | Name of the IAM role for EKS Pod Identity | `string` | `"kubecon-demo-pod-role"` | no |
+| role_name | Name of the IAM role for EKS Pod Identity | `string` | `"windmill-pod-role"` | no |
+| use_name_prefix | Determines whether the IAM role name is used as a prefix | `bool` | `false` | no |
+| path | Path of IAM role | `string` | `null` | no |
+| description | Description of the IAM role | `string` | `null` | no |
+| max_session_duration | Maximum session duration (in seconds) for the role. Valid values: 3600 to 43200 | `number` | `null` | no |
+| permissions_boundary_arn | ARN of the policy that is used to set the permissions boundary for the IAM role | `string` | `null` | no |
 | policy_arns | List of IAM policy ARNs to attach to the role | `list(string)` | `["arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"]` | no |
 | custom_policy_json | Custom IAM policy JSON document to attach to the role | `string` | `null` | no |
+| inline_policy_statements | Map of inline policy statements to add to the IAM role | `map(object)` | `{}` | no |
+| trust_policy_conditions | Additional condition constraints for the trust policy | `list(object)` | `[]` | no |
 | region | AWS region where resources will be created | `string` | `"eu-central-1"` | no |
 | tags | Tags to apply to all resources | `map(string)` | `{}` | no |
 
@@ -71,6 +78,9 @@ module "pod_identity_role" {
 |------|-------------|
 | role_arn | ARN of the IAM role for EKS Pod Identity |
 | role_name | Name of the IAM role for EKS Pod Identity |
+| role_unique_id | Stable and unique string identifying the IAM role |
+| custom_policy_arn | ARN of the custom IAM policy (if created) |
+| custom_policy_id | ID of the custom IAM policy (if created) |
 
 ## Requirements
 

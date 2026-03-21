@@ -12,3 +12,8 @@ output "registry_id" {
   description = "Registry ID where the repository was created"
   value       = module.ecr.repository_registry_id
 }
+
+output "repository_name" {
+  description = "Name of the ECR repository"
+  value       = module.ecr.repository_name
+}
