@@ -62,10 +62,16 @@ variable "node_pools" {
   default     = ["general-purpose"]
 }
 
-variable "argocd_addon_version" {
+variable "idc_instance_arn" {
   type        = string
-  description = "Version of the ArgoCD EKS add-on (null for latest)"
-  default     = null
+  description = "ARN of the AWS IAM Identity Center instance for ArgoCD SSO integration"
+  default     = "arn:aws:sso:::instance/ssoins-6987200cb48a2756"
+}
+
+variable "argocd_namespace" {
+  type        = string
+  description = "Kubernetes namespace for ArgoCD"
+  default     = "argocd"
 }
 
 variable "region" {

@@ -43,12 +43,23 @@ module "eks" {
   }
 }
 
-resource "aws_eks_addon" "argocd" {
-  cluster_name                = module.eks.cluster_name
-  addon_name                  = "eks-addon-argocd"
-  addon_version               = var.argocd_addon_version
-  resolve_conflicts_on_create = "OVERWRITE"
-  resolve_conflicts_on_update = "OVERWRITE"
+module "argocd" {
+  source = "terraform-aws-modules/eks/aws//modules/capability"
+  version = "~> 21.15.0"
+
+  type         = "ARGOCD"
+  cluster_name = module.eks.cluster_name
+
+  configuration = {
+    argo_cd = {
+      aws_idc = {
+        idc_instance_arn = var.idc_instance_arn
+      }
+      namespace = var.argocd_namespace
+    }
+  }
+
+  tags = var.tags
 
   depends_on = [module.eks]
 }
