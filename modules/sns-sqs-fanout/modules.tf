@@ -13,10 +13,10 @@ module "sqs" {
   visibility_timeout_seconds = var.visibility_timeout_seconds
   message_retention_seconds  = var.message_retention_seconds
 
-  redrive_policy = jsonencode({
+  redrive_policy = {
     deadLetterTargetArn = module.dlq.queue_arn
     maxReceiveCount     = var.max_receive_count
-  })
+  }
 
   create_queue_policy = true
   queue_policy_statements = {

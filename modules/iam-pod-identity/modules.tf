@@ -6,7 +6,7 @@ module "iam_role" {
   use_name_prefix = false
 
   trust_policy_permissions = {
-    pod_identity = {
+    PodIdentity = {
       actions = ["sts:AssumeRole", "sts:TagSession"]
       principals = [{
         type        = "Service"
