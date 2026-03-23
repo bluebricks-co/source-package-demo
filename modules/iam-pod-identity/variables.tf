@@ -64,7 +64,7 @@ variable "description" {
 variable "max_session_duration" {
   description = "Maximum session duration (in seconds) for the role. Valid values: 3600 to 43200"
   type        = number
-  default     = null
+  default     = 1800
 }
 
 variable "permissions_boundary_arn" {
