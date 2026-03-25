@@ -108,3 +108,9 @@ variable "trust_policy_conditions" {
   }))
   default = []
 }
+
+variable "kiv_test_prop" {
+  description = ""
+  type        = string
+  default     = "test"
+}
