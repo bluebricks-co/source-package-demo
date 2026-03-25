@@ -1,7 +1,7 @@
 variable "name" {
   description = "Name prefix for all resources in the VPC"
   type        = string
-  default     = "dam-network"
+  default     = "dam-network-nik"
 }
 
 variable "region" {
@@ -19,7 +19,7 @@ variable "tags" {
 variable "vpc_cidr" {
   description = "CIDR block for the VPC"
   type        = string
-  default     = "10.0.0.0/16"
+  default     = "10.0.0.0/15"
 
   validation {
     condition     = can(cidrhost(var.vpc_cidr, 0))
@@ -103,4 +103,28 @@ variable "flow_log_max_aggregation_interval" {
   description = "Maximum interval of time during which a flow of packets is captured and aggregated. Valid values: 60 or 600 seconds"
   type        = number
   default     = 600
+}
+
+variable "enable_dns_support" {
+  description = "Should be true to enable DNS support in the VPC"
+  type        = bool
+  default     = false
+}
+
+variable "enable_dns_hostnames" {
+  description = "Should be true to enable DNS hostnames in the VPC"
+  type        = bool
+  default     = false
+}
+
+variable "enable_network_address_usage_metrics" {
+  description = "Whether to enable Network Address Usage metrics for the VPC"
+  type        = bool
+  default     = true
+}
+
+variable "enable_ipv6" {
+  description = "Requests an Amazon-provided IPv6 CIDR block with a /56 prefix length for the VPC"
+  type        = bool
+  default     = true
 }
