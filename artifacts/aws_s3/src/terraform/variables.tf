@@ -11,6 +11,8 @@ variable "region" {
 variable "tags" {
   default =  {
     Environment = "dev"
+    ManagedBy   = "Terraform"
+    ManagedBy   = "Terraform"
   }
   description = "A mapping of tags to assign to the bucket."
   type = map(string)
