@@ -14,7 +14,10 @@ module "vpc" {
 
   map_public_ip_on_launch = var.map_public_ip_on_launch
 
-  enable_dns_support   = true
+  enable_dns_support                   = var.enable_dns_support
+  enable_dns_hostnames                 = var.enable_dns_hostnames
+  enable_network_address_usage_metrics = var.enable_network_address_usage_metrics
+  enable_ipv6                          = var.enable_ipv6
 
   manage_default_security_group  = true
   default_security_group_ingress = []
