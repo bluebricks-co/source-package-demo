@@ -45,19 +45,19 @@ variable "versioning_mfa_delete" {
 variable "sse_algorithm" {
   type        = string
   description = "Server-side encryption algorithm (AES256 or aws:kms)"
-  default     = "AES256"
+  default     = "aws:kms"
 }
 
 variable "kms_master_key_id" {
   type        = string
   description = "KMS key ID for server-side encryption (required if sse_algorithm is aws:kms)"
-  default     = null
+  default     = "arn:aws:kms:eu-central-1:381491880156:key/faed3bef-5472-43ba-9fb4-bb40163e02b9"
 }
 
 variable "bucket_key_enabled" {
   type        = bool
   description = "Enable S3 Bucket Key for SSE-KMS"
-  default     = false
+  default     = true
 }
 
 # S3 Lifecycle
