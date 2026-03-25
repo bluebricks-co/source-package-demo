@@ -7,7 +7,9 @@ variable "region" {
 variable "tags" {
   description = "Tags to apply to all resources"
   type        = map(string)
-  default     = {}
+  default     = {
+    Tag = "vika"
+  }
 }
 
 variable "role_name" {
