@@ -27,5 +27,7 @@ spec:
               value: {{ .Values.sqs.maxNumberOfMessages | quote }}
             - name: SQS_WAIT_TIME_SECONDS
               value: {{ .Values.sqs.waitTimeSeconds | quote }}
+            - name: TULIP_NOTIFICATIONS_QUEUE_URL
+              value: {{ .Values.tulipNotifications.queueUrl | quote }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
