@@ -21,7 +21,7 @@ module "vpc" {
   default_security_group_egress  = []
 
   # VPC Flow Logs
-  enable_flow_log                                 = var.enable_flow_log
+  enable_flow_log                                 = true
   flow_log_destination_type                       = var.flow_log_destination_type
   create_flow_log_cloudwatch_log_group            = var.create_flow_log_cloudwatch_log_group
   create_flow_log_cloudwatch_iam_role             = var.create_flow_log_cloudwatch_iam_role
