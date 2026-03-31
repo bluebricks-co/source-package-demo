@@ -18,4 +18,16 @@ module "windmill_pod_role" {
   policies = {
     sqs_windmill = "arn:aws:iam::aws:policy/AmazonSQSReadOnlyAccess"
   }
+
+  create_inline_policy = true
+  inline_policy_permissions = {
+    TulipNotificationsSQS = {
+      actions = [
+        "sqs:ReceiveMessage",
+        "sqs:DeleteMessage",
+        "sqs:GetQueueAttributes"
+      ]
+      resources = ["arn:aws:sqs:eu-central-1:381491880156:tulip-notifications"]
+    }
+  }
 }

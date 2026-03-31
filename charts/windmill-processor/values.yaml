@@ -14,6 +14,10 @@ sqs:
   maxNumberOfMessages: 10
   waitTimeSeconds: 20
 
+tulipNotifications:
+  queueUrl: "https://sqs.eu-central-1.amazonaws.com/381491880156/tulip-notifications"
+  region: eu-central-1
+
 hpa:
   minReplicas: 2
   maxReplicas: 10
