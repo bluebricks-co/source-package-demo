@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: windmill-processor
+  namespace: windmill
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: windmill-processor
+  template:
+    metadata:
+      labels:
+        app: windmill-processor
+    spec:
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+      containers:
+        - name: windmill-processor
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: SQS_QUEUE_URL
+              value: {{ .Values.sqs.queueUrl | quote }}
+            - name: AWS_REGION
+              value: {{ .Values.sqs.region | quote }}
+            - name: SQS_MAX_MESSAGES
+              value: {{ .Values.sqs.maxNumberOfMessages | quote }}
+            - name: SQS_WAIT_TIME_SECONDS
+              value: {{ .Values.sqs.waitTimeSeconds | quote }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}

@@ -1,0 +1,28 @@
+replicaCount: 2
+
+image:
+  repository: 381491880156.dkr.ecr.eu-central-1.amazonaws.com/tulip-app
+  tag: "v1.0.0"
+  pullPolicy: IfNotPresent
+
+serviceAccount:
+  name: windmill-processor
+
+sqs:
+  queueUrl: "https://sqs.eu-central-1.amazonaws.com/381491880156/windmill-processor"
+  region: eu-central-1
+  maxNumberOfMessages: 10
+  waitTimeSeconds: 20
+
+hpa:
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 70
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi

@@ -1,0 +1,6 @@
+apiVersion: v2
+name: windmill-processor
+description: SQS consumer for the windmill-events queue
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
