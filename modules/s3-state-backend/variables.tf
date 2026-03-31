@@ -25,7 +25,9 @@ variable "region" {
 variable "tags" {
   type        = map(string)
   description = "Additional tags to apply to all resources"
-  default     = {}
+  default     = {
+    name = "gindi"
+  }
 }
 
 # S3 Versioning
