@@ -15,3 +15,16 @@ terraform {
     }
   }
 }
+
+resource "aws_kms_key" "s3_state" {
+  description             = "KMS key for Terraform state S3 bucket encryption"
+  deletion_window_in_days = 10
+  enable_key_rotation     = true
+
+  tags = var.tags
+}
+
+resource "aws_kms_alias" "s3_state" {
+  name          = "alias/terraform-state-bucket"
+  target_key_id = aws_kms_key.s3_state.key_id
+}
