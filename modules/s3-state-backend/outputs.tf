@@ -1,3 +1,19 @@
+# KMS Key Outputs
+output "kms_key_id" {
+  description = "ID of the KMS key used for S3 bucket encryption"
+  value       = aws_kms_key.tf_state.key_id
+}
+
+output "kms_key_arn" {
+  description = "ARN of the KMS key used for S3 bucket encryption"
+  value       = aws_kms_key.tf_state.arn
+}
+
+output "kms_key_alias" {
+  description = "Alias of the KMS key used for S3 bucket encryption"
+  value       = aws_kms_alias.tf_state.name
+}
+
 # S3 Bucket Outputs
 output "bucket_name" {
   description = "Name of the S3 bucket for Terraform state"

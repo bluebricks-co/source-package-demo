@@ -15,3 +15,16 @@ terraform {
     }
   }
 }
+
+resource "aws_kms_key" "tf_state" {
+  description             = "KMS key for Terraform state bucket encryption: ${var.bucket_name}"
+  deletion_window_in_days = 10
+  enable_key_rotation     = true
+
+  tags = var.tags
+}
+
+resource "aws_kms_alias" "tf_state" {
+  name          = "alias/tf-state-${var.bucket_name}"
+  target_key_id = aws_kms_key.tf_state.key_id
+}
