@@ -1,3 +1,8 @@
+# Known false positive drift: AWS occasionally returns route table associations
+# (aws_route_table.associations) in non-deterministic order, causing Terraform
+# to detect drift even when no real change occurred. This is an AWS API behaviour
+# and cannot be suppressed via lifecycle blocks in external modules.
+# Safe to ignore — no functional impact on routing or connectivity.
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "~> 6.6.0"
