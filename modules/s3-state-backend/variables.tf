@@ -25,14 +25,16 @@ variable "region" {
 variable "tags" {
   type        = map(string)
   description = "Additional tags to apply to all resources"
-  default     = {}
+  default     = {
+    Owner = "BLUEBRICKS"
+  }
 }
 
 # S3 Versioning
 variable "versioning_enabled" {
   type        = bool
   description = "Enable versioning for the S3 bucket"
-  default     = true
+  default     = false
 }
 
 variable "versioning_mfa_delete" {
