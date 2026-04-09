@@ -47,7 +47,7 @@ variable "max_image_count" {
 variable "untagged_expiry_days" {
   description = "Number of days before untagged images expire"
   type        = number
-  default     = 14
+  default     = 30
 
   validation {
     condition     = var.untagged_expiry_days > 0
