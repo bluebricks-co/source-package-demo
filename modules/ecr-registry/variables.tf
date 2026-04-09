@@ -7,7 +7,9 @@ variable "region" {
 variable "tags" {
   description = "Tags to apply to all resources"
   type        = map(string)
-  default     = {}
+  default     = {
+    kiv_test = "kiv_test"
+  }
 }
 
 variable "repository_name" {
