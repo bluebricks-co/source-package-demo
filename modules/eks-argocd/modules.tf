@@ -63,3 +63,66 @@ module "argocd" {
 
   depends_on = [module.eks]
 }
+
+# IAM role for windmill-worker pod identity
+resource "aws_iam_role" "windmill_worker" {
+  name = "${var.cluster_name}-windmill-worker"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Principal = {
+          Service = "pods.eks.amazonaws.com"
+        }
+        Action = [
+          "sts:AssumeRole",
+          "sts:TagSession"
+        ]
+        Condition = {
+          StringEquals = {
+            "aws:SourceAccount" = data.aws_caller_identity.current.account_id
+          }
+          ArnEquals = {
+            "aws:SourceArn" = module.eks.cluster_arn
+          }
+        }
+      }
+    ]
+  })
+
+  tags = var.tags
+}
+
+resource "aws_iam_role_policy" "windmill_worker_sqs" {
+  name = "windmill-worker-sqs"
+  role = aws_iam_role.windmill_worker.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "sqs:ReceiveMessage",
+          "sqs:DeleteMessage",
+          "sqs:GetQueueAttributes",
+          "sqs:SendMessage"
+        ]
+        Resource = "arn:aws:sqs:eu-central-1:381491880156:windmill-processor"
+      }
+    ]
+  })
+}
+
+resource "aws_eks_pod_identity_association" "windmill_worker" {
+  cluster_name    = module.eks.cluster_name
+  namespace       = "windmill"
+  service_account = "windmill-worker"
+  role_arn        = aws_iam_role.windmill_worker.arn
+
+  tags = var.tags
+
+  depends_on = [module.eks]
+}
