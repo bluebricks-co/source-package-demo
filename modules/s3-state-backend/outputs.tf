@@ -80,3 +80,18 @@ output "backend_config" {
     }
   EOT
 }
+
+output "kms_key_arn" {
+  description = "ARN of the customer-managed KMS key used for S3 bucket encryption"
+  value       = aws_kms_key.s3_state.arn
+}
+
+output "kms_key_id" {
+  description = "ID of the customer-managed KMS key used for S3 bucket encryption"
+  value       = aws_kms_key.s3_state.key_id
+}
+
+output "kms_key_alias" {
+  description = "Alias of the customer-managed KMS key"
+  value       = aws_kms_alias.s3_state.name
+}
