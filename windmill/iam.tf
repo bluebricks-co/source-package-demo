@@ -15,7 +15,16 @@ module "windmill_pod_role" {
     }
   }
 
-  policies = {
-    sqs_windmill = "arn:aws:iam::aws:policy/AmazonSQSReadOnlyAccess"
+  inline_policy_permissions = {
+    sqs_windmill_processor = {
+      actions = [
+        "sqs:ReceiveMessage",
+        "sqs:DeleteMessage",
+        "sqs:GetQueueAttributes",
+      ]
+      resources = [
+        "arn:aws:sqs:eu-central-1:381491880156:windmill-processor",
+      ]
+    }
   }
 }
