@@ -71,12 +71,12 @@ variable "lifecycle_rule" {
 variable "logging_enabled" {
   type        = bool
   description = "Enable access logging for the S3 bucket"
-  default     = false
+  default     = true
 }
 
 variable "logging_target_bucket" {
   type        = string
-  description = "Target bucket for access logs"
+  description = "Target bucket for access logs (defaults to the state bucket itself)"
   default     = null
 }
 
@@ -122,21 +122,21 @@ variable "write_capacity" {
 variable "point_in_time_recovery_enabled" {
   type        = bool
   description = "Enable point-in-time recovery for DynamoDB table"
-  default     = false
+  default     = true
 }
 
 # DynamoDB Deletion Protection
 variable "deletion_protection_enabled" {
   type        = bool
   description = "Enable deletion protection for DynamoDB table"
-  default     = null
+  default     = true
 }
 
 # DynamoDB Encryption
 variable "dynamodb_server_side_encryption_enabled" {
   type        = bool
   description = "Enable server-side encryption for DynamoDB table"
-  default     = false
+  default     = true
 }
 
 variable "dynamodb_kms_key_arn" {
