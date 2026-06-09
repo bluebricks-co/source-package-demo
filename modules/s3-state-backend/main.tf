@@ -15,3 +15,14 @@ terraform {
     }
   }
 }
+
+resource "aws_kms_key" "state" {
+  description             = "KMS key for ${var.bucket_name} S3 bucket encryption"
+  deletion_window_in_days = 10
+  enable_key_rotation     = true
+}
+
+resource "aws_kms_alias" "state" {
+  name          = "alias/${var.bucket_name}"
+  target_key_id = aws_kms_key.state.key_id
+}

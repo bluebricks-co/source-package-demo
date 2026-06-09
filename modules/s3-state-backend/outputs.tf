@@ -65,6 +65,22 @@ output "dynamodb_table_stream_label" {
   value       = module.dynamodb.dynamodb_table_stream_label
 }
 
+# KMS Key Outputs
+output "kms_key_id" {
+  description = "ID of the KMS key used for S3 bucket encryption"
+  value       = aws_kms_key.state.key_id
+}
+
+output "kms_key_arn" {
+  description = "ARN of the KMS key used for S3 bucket encryption"
+  value       = aws_kms_key.state.arn
+}
+
+output "kms_key_alias" {
+  description = "Alias of the KMS key"
+  value       = aws_kms_alias.state.name
+}
+
 # Backend Configuration
 output "backend_config" {
   description = "Terraform backend configuration snippet"
